@@ -6,6 +6,8 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const MenucarritoIcon = document.querySelector('.navbar-shopping-cart');
 const detallesproducto = document.querySelector('.product-detail ');
 
+const cardscontainer = document.querySelector('.cards-container');
+
 
 navEmail.addEventListener('mouseover',toggleDesktopMenu);
 MenuHamIcon.addEventListener('click',toggleMobileMenu);
@@ -64,4 +66,61 @@ function toggleMobileMenuCarrito(){
     detallesproducto.classList.toggle('inactive');
     
         
+}
+
+const productlist=[];
+productlist.push({
+  name:'Bike',
+  price:120,
+  image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+productlist.push({
+  name:'Bike',
+  price:120,
+  image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+productlist.push({
+  name:'Bike',
+  price:120,
+  image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+
+renderProducts(productlist);
+
+function renderProducts(productlist){
+  for (product of productlist){
+    const productcard=document.createElement('div');
+    productcard.classList.add('product-card');
+  
+    const img=document.createElement('img');
+    img.setAttribute('src', product.image);
+  
+    const productInfo=document.createElement('div');
+    productInfo.classList.add('product-info');
+  
+    const productInfodiv=document.createElement('div');
+  
+    const productprice = document.createElement('p');
+    productprice.innerText ='$'+product.price;
+    
+    const productName= document.createElement('p');
+    productName.innerText = product.name;
+  
+    
+    productInfodiv.appendChild(productprice);
+    productInfodiv.appendChild(productName);
+  
+    const productinfofigure = document.createElement('figure');
+    const imgcart=document.createElement('img');
+    imgcart.setAttribute('src','./icons/bt_add_to_cart.svg');
+  
+    productinfofigure.appendChild(imgcart);
+  
+    productInfo.appendChild(productInfodiv);
+    productInfo.appendChild(productinfofigure);
+    productcard.appendChild(img);
+    productcard.appendChild(productInfo);
+  
+    cardscontainer.appendChild(productcard);
+  }
 }
